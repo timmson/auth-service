@@ -1,0 +1,41 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Lint and coverage
+      working-directory: ./front
+      run: |
+        npm i
+        npm run lint
+      env:
+        CI: true
+
+    - name: Lint and coverage
+      working-directory: ./front
+      run: |
+        npm run test
+      env:
+        CI: true
+
+    - name: Compile App
+      working-directory: ./front
+      run: |
+        npm run prod
+      env:
+        CI: true
