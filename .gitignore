@@ -1,5 +1,9 @@
 .idea
 .gradle
 
-build
+# Front
+coverage
 node_modules
+
+# Back
+build
