@@ -4,7 +4,6 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.spring") apply false
     id("org.springframework.boot") apply false
-    id("org.jetbrains.kotlinx.kover") apply false
     id("io.spring.dependency-management") apply false
 }
 
@@ -19,7 +18,6 @@ val mockitoKotlinVersion: String by project
 
 subprojects {
     apply(plugin = "kotlin")
-    apply(plugin = "org.jetbrains.kotlinx.kover")
     apply(plugin = "io.spring.dependency-management")
 
     group = "ru.timmson.feeder"

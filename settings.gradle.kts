@@ -17,4 +17,4 @@ pluginManagement {
     }
 }
 
-include("feeder-web")
+include("auth-service-web")
