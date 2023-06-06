@@ -20,7 +20,7 @@ subprojects {
     apply(plugin = "kotlin")
     apply(plugin = "io.spring.dependency-management")
 
-    group = "ru.timmson.feeder"
+    group = "ru.timmson.authService"
     version = "1.0"
 
     repositories {
