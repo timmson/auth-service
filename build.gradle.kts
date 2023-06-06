@@ -7,10 +7,6 @@ plugins {
     id("io.spring.dependency-management") apply false
 }
 
-repositories {
-    mavenCentral()
-}
-
 val springVersion: String by project
 val springBootVersion: String by project
 val kotlinVersion: String by project
@@ -33,7 +29,6 @@ subprojects {
 
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
-        implementation(kotlin("script-runtime"))
 
         implementation("org.springframework:spring-context:$springVersion")
 
