@@ -23,7 +23,7 @@ class HealthCheckControllerShould {
     fun healthcheck() {
         val expected = "OK"
 
-        val result = mockMvc.get("/api/v1/private/healthcheck/")
+        val result = mockMvc.get("/api/v1/private/healthcheck")
         result.andExpect { status { isOk() } }.andExpect { content { string(expected) } }
     }
 
