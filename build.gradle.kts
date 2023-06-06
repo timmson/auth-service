@@ -7,6 +7,10 @@ plugins {
     id("io.spring.dependency-management") apply false
 }
 
+repositories {
+    mavenCentral()
+}
+
 val springVersion: String by project
 val springBootVersion: String by project
 val kotlinVersion: String by project
@@ -20,7 +24,7 @@ subprojects {
     apply(plugin = "kotlin")
     apply(plugin = "io.spring.dependency-management")
 
-    group = "ru.timmson.feeder"
+    group = "ru.timmson.authService"
     version = "1.0"
 
     repositories {
@@ -29,6 +33,7 @@ subprojects {
 
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
+        implementation(kotlin("script-runtime"))
 
         implementation("org.springframework:spring-context:$springVersion")
 
