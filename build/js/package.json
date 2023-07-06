@@ -1,0 +1,17 @@
+{
+  "name": "auth-service",
+  "version": "unspecified",
+  "private": true,
+  "workspaces": [
+    "packages\\auth-service-model",
+    "packages\\auth-service-model-test",
+    "packages_imported\\kotlin\\1.9.0",
+    "packages_imported\\kotlin-test-js-runner\\0.0.1"
+  ],
+  "resolutions": {},
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "bundledDependencies": []
+}

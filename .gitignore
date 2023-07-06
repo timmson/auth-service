@@ -7,4 +7,5 @@ node_modules
 kotlin-js-store
 
 # Back
-build
+*/build
+kotlin-test-js-runner
