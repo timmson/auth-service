@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "auth-service-model": "file:../build/js/packages/auth-service-model/koltin/",
+    "auth-service-model": "file:../build/js/packages/auth-service-model",
     "axios": "1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
