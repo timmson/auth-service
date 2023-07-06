@@ -25,7 +25,7 @@ class HealthCheckControllerShould {
 
     @Test
     fun healthcheck() {
-        val expected = objectMapper.writeValueAsString(MyUser(1,"Harry", "Potter"))
+        val expected = objectMapper.writeValueAsString(MyUser())
 
         val result = mockMvc.get("/api/v1/private/healthcheck")
         result.andExpect { status { isOk() } }.andExpect { content { json(expected) } }

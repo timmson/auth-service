@@ -11,6 +11,6 @@ import ru.timmson.authService.model.MyUser
 class HealthCheckController {
 
     @GetMapping("healthcheck")
-    fun healthCheck(): ResponseEntity<MyUser> = ResponseEntity.ok(MyUser(1, "Harry", "Potter"))
+    fun healthCheck(): ResponseEntity<MyUser> = ResponseEntity.ok(MyUser())
 
 }
