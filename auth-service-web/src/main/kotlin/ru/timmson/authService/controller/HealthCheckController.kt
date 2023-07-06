@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 import ru.timmson.authService.model.User
 
 @RestController
-@RequestMapping("/api/v1/private/healthcheck")
+@RequestMapping("/api/v1/private")
 class HealthCheckController {
 
     @GetMapping("/")
