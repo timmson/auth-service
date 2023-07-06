@@ -18,4 +18,8 @@
 4. You will see ```You are authorized```
 5. Done
 
+
+## KMM
 - [Add Kotlin/JS support to your KMM library](https://dev.to/touchlab/add-kotlinjs-support-to-your-kmm-library-48d9)
+
+![schema](img.png)
