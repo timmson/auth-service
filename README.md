@@ -3,7 +3,7 @@
 ## Back
 
 1. Install Java 17+ and Gradle 8.0+
-2. Run  ```./gradlew.bat :auth-service-web:bootRun```
+2. Run  ```./gradlew.bat :auth-service-model:jsNodeProductionLibraryDistribution :auth-service-web:bootRun```
 
 ## Front
 
@@ -17,3 +17,9 @@
 3. Type ```y``` in the console of the backend application
 4. You will see ```You are authorized```
 5. Done
+
+
+## KMM
+- [Add Kotlin/JS support to your KMM library](https://dev.to/touchlab/add-kotlinjs-support-to-your-kmm-library-48d9)
+
+![schema](img.png)

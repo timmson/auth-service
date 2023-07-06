@@ -9,10 +9,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
-open class WebSecurityConfig {
+class WebSecurityConfig {
 
     @Bean
-    open fun filterChain(http: HttpSecurity, authenticationService: AuthenticationService): SecurityFilterChain =
+    fun filterChain(http: HttpSecurity, authenticationService: AuthenticationService): SecurityFilterChain =
         http
             .authorizeHttpRequests().requestMatchers("/api/v1/authenticate/**").permitAll()
             .and()

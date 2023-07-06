@@ -15,11 +15,16 @@ const App = () => {
 	return (
 		<>
 			<h1>
-				Hello, auth-service!
-
+                Hello, auth-service!
 			</h1>
 			<p>
-				You are {state.authorized ? "" : "not"} authorized
+				{
+					state.authorized
+						?
+						`You are ${state.user.firstName} ${state.user.lastName}`
+						:
+						"You are not authorized"
+				}
 			</p>
 			{button}
 		</>
