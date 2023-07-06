@@ -3,8 +3,16 @@ plugins {
 }
 
 kotlin {
+    sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
+    }
     js(IR) {
-        binaries.executable()
+        moduleName = "auth-service-model"
+        binaries.library()
         nodejs {
 
         }
