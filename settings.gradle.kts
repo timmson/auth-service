@@ -10,11 +10,13 @@ pluginManagement {
     }
 
     plugins {
-        id("io.spring.dependency-management") version springDependencyManagementPluginVersion
         kotlin("jvm") version kotlinVersion
+        kotlin("multiplatform") version kotlinVersion
         kotlin("plugin.spring") version kotlinVersion
         id("org.springframework.boot") version springBootVersion
+        id("io.spring.dependency-management") version springDependencyManagementPluginVersion
     }
 }
 
+include("auth-service-model")
 include("auth-service-web")

@@ -4,6 +4,7 @@
 # Front
 coverage
 node_modules
+kotlin-js-store
 
 # Back
 build
