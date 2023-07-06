@@ -1,5 +1,5 @@
 import {configureStore} from "@reduxjs/toolkit"
-import {AuthSlice, AuthState} from "./auth-reducer"
+import {AuthSlice} from "./auth-reducer"
 import {healthCheck} from "./auth-api"
 
 export const Reducers = {}
