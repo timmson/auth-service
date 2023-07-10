@@ -6,10 +6,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
-open class TestWebSecurityConfig {
+class TestWebSecurityConfig {
 
     @Bean
-    open fun filterChain(http: HttpSecurity): SecurityFilterChain =
-        http.authorizeHttpRequests().anyRequest().permitAll().and().csrf().disable().build()
+    fun filterChain(http: HttpSecurity): SecurityFilterChain =
+        http.authorizeHttpRequests {
+            it.anyRequest().permitAll()
+        }.csrf { it.disable() }.build()
+
 
 }
