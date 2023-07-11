@@ -15,7 +15,7 @@
 1. Open [http://localhost:8080](http://localhost:8080)
 2. If you see ```You are not authorized``` click ```Login```
 3. Type ```y``` in the console of the backend application
-4. You will see ```You are authorized```
+4. You will see ```You are Harry Potter```
 5. Done
 
 
