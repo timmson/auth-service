@@ -18,5 +18,11 @@ pluginManagement {
     }
 }
 
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
 include("auth-service-model")
 include("auth-service-web")

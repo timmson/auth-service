@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+
 }
 
 val junitVersion: String by project
@@ -15,7 +16,7 @@ kotlin {
                 optIn("kotlin.js.ExperimentalJsExport")
             }
         }
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(kotlin("test"))
             }
@@ -35,7 +36,7 @@ kotlin {
 
     }
 
-    macosX64("native") {
+    macosArm64("native") {
         binaries {
             executable()
         }
