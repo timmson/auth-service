@@ -1,3 +1,10 @@
+//region block: polyfills
+if (typeof Math.imul === 'undefined') {
+  Math.imul = function imul(a, b) {
+    return (a & 4.29490176E9) * (b & 65535) + (a & 65535) * (b | 0) | 0;
+  };
+}
+//endregion
 (function (root, factory) {
   if (typeof define === 'function' && define.amd)
     define(['exports'], factory);
@@ -8,16 +15,77 @@
 }(this, function (_) {
   'use strict';
   //region block: pre-declaration
+  setMetadataFor(Number_0, 'Number', classMeta);
   setMetadataFor(Unit, 'Unit', objectMeta);
+  setMetadataFor(Companion, 'Companion', objectMeta);
+  setMetadataFor(Long, 'Long', classMeta, Number_0);
+  setMetadataFor(Exception, 'Exception', classMeta, Error);
+  setMetadataFor(RuntimeException, 'RuntimeException', classMeta, Exception);
+  setMetadataFor(IllegalArgumentException, 'IllegalArgumentException', classMeta, RuntimeException);
+  setMetadataFor(NoSuchElementException, 'NoSuchElementException', classMeta, RuntimeException);
   //endregion
+  function last(_this__u8e3s4) {
+    // Inline function 'kotlin.text.isEmpty' call
+    if (charSequenceLength(_this__u8e3s4) === 0)
+      throw NoSuchElementException_init_$Create$('Char sequence is empty.');
+    return charSequenceGet(_this__u8e3s4, get_lastIndex(_this__u8e3s4));
+  }
+  function get_lastIndex(_this__u8e3s4) {
+    return charSequenceLength(_this__u8e3s4) - 1 | 0;
+  }
+  function _UShort___init__impl__jigrne(data) {
+    return data;
+  }
+  function _UShort___get_data__impl__g0245($this) {
+    return $this;
+  }
+  function Number_0() {
+  }
   function Unit() {
     Unit_instance = this;
   }
+  protoOf(Unit).toString = function () {
+    return 'kotlin.Unit';
+  };
   var Unit_instance;
   function Unit_getInstance() {
     if (Unit_instance == null)
       new Unit();
     return Unit_instance;
+  }
+  function _Char___init__impl__6a9atx(value) {
+    return value;
+  }
+  function _get_value__a43j40($this) {
+    return $this;
+  }
+  function _Char___init__impl__6a9atx_0(code) {
+    var tmp$ret$0;
+    // Inline function 'kotlin.UShort.toInt' call
+    tmp$ret$0 = _UShort___get_data__impl__g0245(code) & 65535;
+    return _Char___init__impl__6a9atx(tmp$ret$0);
+  }
+  function Char__toInt_impl_vasixd($this) {
+    return _get_value__a43j40($this);
+  }
+  function Companion() {
+    Companion_instance = this;
+    this.a_1 = _Char___init__impl__6a9atx(0);
+    this.b_1 = _Char___init__impl__6a9atx(65535);
+    this.c_1 = _Char___init__impl__6a9atx(55296);
+    this.d_1 = _Char___init__impl__6a9atx(56319);
+    this.e_1 = _Char___init__impl__6a9atx(56320);
+    this.f_1 = _Char___init__impl__6a9atx(57343);
+    this.g_1 = _Char___init__impl__6a9atx(55296);
+    this.h_1 = _Char___init__impl__6a9atx(57343);
+    this.i_1 = 2;
+    this.j_1 = 16;
+  }
+  var Companion_instance;
+  function Companion_getInstance() {
+    if (Companion_instance == null)
+      new Companion();
+    return Companion_instance;
   }
   function implement(interfaces) {
     var maxSize = 1;
@@ -83,6 +151,56 @@
     }
     return tmp_0;
   }
+  function charSequenceGet(a, index) {
+    var tmp;
+    if (isString(a)) {
+      // Inline function 'kotlin.Char' call
+      // Inline function 'kotlin.js.unsafeCast' call
+      // Inline function 'kotlin.js.asDynamic' call
+      var tmp1_Char = a.charCodeAt(index);
+      var tmp_0;
+      // Inline function 'kotlin.code' call
+      Companion_getInstance();
+      var tmp0_get_code_gknlva = _Char___init__impl__6a9atx(0);
+      if (tmp1_Char < Char__toInt_impl_vasixd(tmp0_get_code_gknlva)) {
+        tmp_0 = true;
+      } else {
+        // Inline function 'kotlin.code' call
+        Companion_getInstance();
+        var tmp1_get_code_jtnknr = _Char___init__impl__6a9atx(65535);
+        tmp_0 = tmp1_Char > Char__toInt_impl_vasixd(tmp1_get_code_jtnknr);
+      }
+      if (tmp_0) {
+        throw IllegalArgumentException_init_$Create$('Invalid Char code: ' + tmp1_Char);
+      }
+      tmp = numberToChar(tmp1_Char);
+    } else {
+      tmp = a.k(index);
+    }
+    return tmp;
+  }
+  function isString(a) {
+    return typeof a === 'string';
+  }
+  function charSequenceLength(a) {
+    var tmp;
+    if (isString(a)) {
+      // Inline function 'kotlin.js.unsafeCast' call
+      // Inline function 'kotlin.js.asDynamic' call
+      tmp = a.length;
+    } else {
+      tmp = a.l();
+    }
+    return tmp;
+  }
+  function captureStack(instance, constructorFunction) {
+    if (Error.captureStackTrace != null) {
+      Error.captureStackTrace(instance, constructorFunction);
+    } else {
+      // Inline function 'kotlin.js.asDynamic' call
+      instance.stack = (new Error()).stack;
+    }
+  }
   function protoOf(constructor) {
     return constructor.prototype;
   }
@@ -91,6 +209,70 @@
   }
   function objectCreate(proto) {
     return Object.create(proto);
+  }
+  function extendThrowable(this_, message, cause) {
+    Error.call(this_);
+    setPropertiesToThrowableInstance(this_, message, cause);
+  }
+  function setPropertiesToThrowableInstance(this_, message, cause) {
+    var errorInfo = calculateErrorInfo(Object.getPrototypeOf(this_));
+    if ((errorInfo & 1) === 0) {
+      var tmp;
+      if (message == null) {
+        var tmp_0;
+        if (!(message === null)) {
+          var tmp1_elvis_lhs = cause == null ? null : cause.toString();
+          tmp_0 = tmp1_elvis_lhs == null ? VOID : tmp1_elvis_lhs;
+        } else {
+          tmp_0 = VOID;
+        }
+        tmp = tmp_0;
+      } else {
+        tmp = message;
+      }
+      this_.message = tmp;
+    }
+    if ((errorInfo & 2) === 0) {
+      this_.cause = cause;
+    }
+    this_.name = Object.getPrototypeOf(this_).constructor.name;
+  }
+  function Long() {
+  }
+  protoOf(Long).n = function () {
+    return this.m_1;
+  };
+  function numberToInt(a) {
+    var tmp;
+    if (a instanceof Long) {
+      tmp = a.n();
+    } else {
+      tmp = doubleToInt(a);
+    }
+    return tmp;
+  }
+  function doubleToInt(a) {
+    var tmp;
+    if (a > 2.147483647E9) {
+      tmp = 2147483647;
+    } else if (a < -2.147483648E9) {
+      tmp = -2147483648;
+    } else {
+      // Inline function 'kotlin.js.jsBitwiseOr' call
+      tmp = a | 0;
+    }
+    return tmp;
+  }
+  function toShort(a) {
+    // Inline function 'kotlin.js.unsafeCast' call
+    return a << 16 >> 16;
+  }
+  function numberToChar(a) {
+    var tmp$ret$0;
+    // Inline function 'kotlin.toUShort' call
+    var tmp0_toUShort = numberToInt(a);
+    tmp$ret$0 = _UShort___init__impl__jigrne(toShort(tmp0_toUShort));
+    return _Char___init__impl__6a9atx_0(tmp$ret$0);
   }
   function classMeta(name, associatedObjectKey, associatedObjects, suspendArity) {
     return createMetadata('class', name, associatedObjectKey, associatedObjects, suspendArity, null);
@@ -114,6 +296,39 @@
   function objectMeta(name, associatedObjectKey, associatedObjects, suspendArity) {
     return createMetadata('object', name, associatedObjectKey, associatedObjects, suspendArity, null);
   }
+  function calculateErrorInfo(proto) {
+    var tmp0_safe_receiver = proto.constructor;
+    var metadata = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.$metadata$;
+    var tmp2_safe_receiver = metadata == null ? null : metadata.errorInfo;
+    if (tmp2_safe_receiver == null)
+      null;
+    else {
+      // Inline function 'kotlin.let' call
+      // Inline function 'kotlin.contracts.contract' call
+      return tmp2_safe_receiver;
+    }
+    var result = 0;
+    if (hasProp(proto, 'message'))
+      result = result | 1;
+    if (hasProp(proto, 'cause'))
+      result = result | 2;
+    if (!(result === 3)) {
+      var parentProto = getPrototypeOf(proto);
+      if (parentProto != Error.prototype) {
+        result = result | calculateErrorInfo(parentProto);
+      }
+    }
+    if (!(metadata == null)) {
+      metadata.errorInfo = result;
+    }
+    return result;
+  }
+  function hasProp(proto, propName) {
+    return proto.hasOwnProperty(propName);
+  }
+  function getPrototypeOf(obj) {
+    return Object.getPrototypeOf(obj);
+  }
   function get_VOID() {
     _init_properties_void_kt__3zg9as();
     return VOID;
@@ -126,12 +341,58 @@
       VOID = void 0;
     }
   }
+  function IllegalArgumentException_init_$Init$(message, $this) {
+    RuntimeException_init_$Init$(message, $this);
+    IllegalArgumentException.call($this);
+    return $this;
+  }
+  function IllegalArgumentException_init_$Create$(message) {
+    var tmp = IllegalArgumentException_init_$Init$(message, objectCreate(protoOf(IllegalArgumentException)));
+    captureStack(tmp, IllegalArgumentException_init_$Create$);
+    return tmp;
+  }
+  function IllegalArgumentException() {
+    captureStack(this, IllegalArgumentException);
+  }
+  function Exception_init_$Init$(message, $this) {
+    extendThrowable($this, message);
+    Exception.call($this);
+    return $this;
+  }
+  function Exception() {
+    captureStack(this, Exception);
+  }
+  function RuntimeException_init_$Init$(message, $this) {
+    Exception_init_$Init$(message, $this);
+    RuntimeException.call($this);
+    return $this;
+  }
+  function RuntimeException() {
+    captureStack(this, RuntimeException);
+  }
+  function NoSuchElementException_init_$Init$(message, $this) {
+    RuntimeException_init_$Init$(message, $this);
+    NoSuchElementException.call($this);
+    return $this;
+  }
+  function NoSuchElementException_init_$Create$(message) {
+    var tmp = NoSuchElementException_init_$Init$(message, objectCreate(protoOf(NoSuchElementException)));
+    captureStack(tmp, NoSuchElementException_init_$Create$);
+    return tmp;
+  }
+  function NoSuchElementException() {
+    captureStack(this, NoSuchElementException);
+  }
   //region block: exports
   _.$_$ = _.$_$ || {};
-  _.$_$.a = classMeta;
-  _.$_$.b = protoOf;
-  _.$_$.c = setMetadataFor;
-  _.$_$.d = VOID;
+  _.$_$.a = Char__toInt_impl_vasixd;
+  _.$_$.b = charSequenceGet;
+  _.$_$.c = charSequenceLength;
+  _.$_$.d = classMeta;
+  _.$_$.e = protoOf;
+  _.$_$.f = setMetadataFor;
+  _.$_$.g = last;
+  _.$_$.h = VOID;
   //endregion
   return _;
 }));

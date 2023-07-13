@@ -1,6 +1,9 @@
 type Nullable<T> = T | null | undefined
 export declare namespace ru.timmson.authService.model {
-    class MyUser {
+    function isValidLuna(number: string): boolean;
+}
+export declare namespace ru.timmson.authService.model {
+    class User {
         constructor();
         get id(): Nullable<number>;
         set id(value: Nullable<number>);

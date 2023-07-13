@@ -1,27 +1,33 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {User} from "../model"
+import {User, isValidLuna} from "../model"
 
 export interface AuthState {
-	authorized: boolean
-	user?: User
+    authorized: boolean
+    user?: User
+    cardNumber: string
+    isValidCardNUmber: boolean
 }
 
-const initialState: AuthState = {authorized: false}
+const initialState: AuthState = {authorized: false, cardNumber: "", isValidCardNUmber: false}
 
 export const AuthSlice = createSlice({
-	name: "auth",
-	initialState,
-	reducers: {
-		authAction: (state: AuthState, action: PayloadAction<User>) => {
-			state.authorized = true
-			state.user = action.payload
-		},
-		dropAction: (state: AuthState) => {
-			state.authorized = false
-		}
-	}
+    name: "auth",
+    initialState,
+    reducers: {
+        authAction: (state: AuthState, action: PayloadAction<User>) => {
+            state.authorized = true
+            state.user = action.payload
+        },
+        updateCardNumber: (state: AuthState, action: PayloadAction<string>) => {
+            state.cardNumber = action.payload
+            state.isValidCardNUmber = isValidLuna(action.payload)
+        },
+        dropAction: (state: AuthState) => {
+            state.authorized = false
+        }
+    }
 })
 
 export default AuthSlice.reducer
 
-export const {authAction, dropAction} = AuthSlice.actions
+export const {authAction, updateCardNumber, dropAction} = AuthSlice.actions

@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
-import ru.timmson.authService.model.MyUser
+import ru.timmson.authService.model.User
 import ru.timmson.authService.security.TestWebSecurityConfig
 
 @ExtendWith(MockitoExtension::class)
@@ -26,7 +26,7 @@ class HealthCheckControllerShould {
     @Test
     fun healthcheck() {
         val expected = objectMapper.writeValueAsString(
-            MyUser().apply {
+            User().apply {
                 id = 1
                 firstName = "Harry"
                 lastName = "Potter"

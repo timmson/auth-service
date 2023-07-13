@@ -1,7 +1,7 @@
 {
   "name": "auth-service-model",
   "version": "1.0.0",
-  "main": "kotlin\\auth-service-model.js",
+  "main": "kotlin/auth-service-model.js",
   "devDependencies": {
     "typescript": "5.0.4",
     "source-map-support": "0.5.21"

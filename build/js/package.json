@@ -3,10 +3,11 @@
   "version": "unspecified",
   "private": true,
   "workspaces": [
-    "packages\\auth-service-model",
-    "packages\\auth-service-model-test",
-    "packages_imported\\kotlin\\1.9.0",
-    "packages_imported\\kotlin-test-js-runner\\0.0.1"
+    "packages/auth-service-model",
+    "packages/auth-service-model-test",
+    "packages_imported/kotlin/1.9.0",
+    "packages_imported/kotlin-test-js-runner/0.0.1",
+    "packages_imported/kotlin-test/1.9.0"
   ],
   "resolutions": {},
   "devDependencies": {},

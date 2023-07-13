@@ -1,17 +1,19 @@
-import AuthReducer, {authAction, dropAction} from "../../src/redux/auth-reducer"
+import AuthReducer, {authAction, AuthState, dropAction} from "../../src/redux/auth-reducer"
 
 describe("Reducer should", () => {
 
-	test("respond {authorized: true} with login", () => {
-		const actual = AuthReducer({authorized: false}, authAction)
+    const data: AuthState = {authorized: false, cardNumber: "", isValidCardNUmber: false}
 
-		expect(actual).toEqual({authorized: true})
-	})
+    test("respond {authorized: true} with login", () => {
+        const actual = AuthReducer({...data, authorized: false}, authAction)
 
-	test("respond {authorized: false} with logout", () => {
-		const actual = AuthReducer({authorized: true}, dropAction)
+        expect(actual).toEqual({authorized: true})
+    })
 
-		expect(actual).toEqual({authorized: false})
-	})
+    test("respond {authorized: false} with logout", () => {
+        const actual = AuthReducer({...data, authorized: true}, dropAction)
+
+        expect(actual).toEqual({authorized: false})
+    })
 
 })
