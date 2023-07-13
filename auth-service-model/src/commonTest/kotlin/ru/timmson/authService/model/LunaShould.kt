@@ -8,7 +8,7 @@ class LunaShould {
 
     @Test
     fun success_whenNumberIsValid() {
-        val number = "1234567890123456"
+        val number = "2200770212727079"
 
         val result = isValidLuna(number)
 

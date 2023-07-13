@@ -13,39 +13,33 @@
   'use strict';
   //region block: imports
   var imul = Math.imul;
-  var charSequenceLength = kotlin_kotlin.$_$.c;
-  var last = kotlin_kotlin.$_$.g;
-  var Char__toInt_impl_vasixd = kotlin_kotlin.$_$.a;
-  var charSequenceGet = kotlin_kotlin.$_$.b;
+  var charSequenceGet = kotlin_kotlin.$_$.c;
+  var _Char___init__impl__6a9atx = kotlin_kotlin.$_$.a;
+  var Char__minus_impl_a2frrh = kotlin_kotlin.$_$.b;
   var protoOf = kotlin_kotlin.$_$.e;
   var classMeta = kotlin_kotlin.$_$.d;
-  var VOID = kotlin_kotlin.$_$.h;
+  var VOID = kotlin_kotlin.$_$.g;
   var setMetadataFor = kotlin_kotlin.$_$.f;
   //endregion
   //region block: pre-declaration
   setMetadataFor(User, 'User', classMeta);
   //endregion
   function isValidLuna(number) {
-    // Inline function 'kotlin.text.isEmpty' call
-    if (charSequenceLength(number) === 0)
+    if (!(number.length === 16))
       return false;
-    // Inline function 'kotlin.code' call
-    var tmp0_get_code_gknlva = last(number);
-    var sum = Char__toInt_impl_vasixd(tmp0_get_code_gknlva);
-    var parity = number.length % 2 | 0;
-    var inductionVariable = number.length - 2 | 0;
+    var sum = 0;
+    var inductionVariable = number.length - 1 | 0;
     if (0 <= inductionVariable)
       do {
         var i = inductionVariable;
         inductionVariable = inductionVariable + -1 | 0;
-        // Inline function 'kotlin.code' call
-        var tmp1_get_code_jtnknr = charSequenceGet(number, i);
-        var summand = Char__toInt_impl_vasixd(tmp1_get_code_jtnknr);
-        if ((i % 2 | 0) === parity) {
-          var product = imul(summand, 2);
-          summand = product > 9 ? product - 9 | 0 : product;
+        var digit = Char__minus_impl_a2frrh(charSequenceGet(number, i), _Char___init__impl__6a9atx(48));
+        if ((i % 2 | 0) === 0) {
+          digit = imul(digit, 2);
+          if (digit > 9)
+            digit = digit - 9 | 0;
         }
-        sum = sum + summand | 0;
+        sum = sum + digit | 0;
       }
        while (0 <= inductionVariable);
     return (sum % 10 | 0) === 0;
@@ -55,22 +49,22 @@
     this.firstName = '';
     this.lastName = '';
   }
-  protoOf(User).q = function (_set____db54di) {
+  protoOf(User).p = function (_set____db54di) {
     this.id = _set____db54di;
   };
-  protoOf(User).r = function () {
+  protoOf(User).q = function () {
     return this.id;
   };
-  protoOf(User).s = function (_set____db54di) {
+  protoOf(User).r = function (_set____db54di) {
     this.firstName = _set____db54di;
   };
-  protoOf(User).t = function () {
+  protoOf(User).s = function () {
     return this.firstName;
   };
-  protoOf(User).u = function (_set____db54di) {
+  protoOf(User).t = function (_set____db54di) {
     this.lastName = _set____db54di;
   };
-  protoOf(User).v = function () {
+  protoOf(User).u = function () {
     return this.lastName;
   };
   //region block: exports
