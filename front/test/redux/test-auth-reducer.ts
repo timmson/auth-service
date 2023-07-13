@@ -7,13 +7,13 @@ describe("Reducer should", () => {
     test("respond {authorized: true} with login", () => {
         const actual = AuthReducer({...data, authorized: false}, authAction)
 
-        expect(actual).toEqual({authorized: true})
+        expect(actual).toEqual({...data, authorized: true})
     })
 
     test("respond {authorized: false} with logout", () => {
         const actual = AuthReducer({...data, authorized: true}, dropAction)
 
-        expect(actual).toEqual({authorized: false})
+        expect(actual).toEqual({...data, authorized: false})
     })
 
 })
