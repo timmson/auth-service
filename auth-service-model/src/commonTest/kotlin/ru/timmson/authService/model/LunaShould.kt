@@ -10,7 +10,7 @@ class LunaShould {
     fun success_whenNumberIsValid() {
         val number = "2200770212727079"
 
-        val result = isValidLuna(number)
+        val result = isValidCardNumber(number)
 
         assertTrue(result)
     }
@@ -19,7 +19,7 @@ class LunaShould {
     fun fail_whenNumberIsEmpty() {
         val number = ""
 
-        val result = isValidLuna(number)
+        val result = isValidCardNumber(number)
 
         assertFalse(result)
     }
@@ -28,7 +28,7 @@ class LunaShould {
     fun fail_whenNumberIsInvalid() {
         val number = "1234567890123457"
 
-        val result = isValidLuna(number)
+        val result = isValidCardNumber(number)
 
         assertFalse(result)
     }

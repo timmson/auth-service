@@ -22,17 +22,7 @@ if (typeof Math.imul === 'undefined') {
   setMetadataFor(Exception, 'Exception', classMeta, Error);
   setMetadataFor(RuntimeException, 'RuntimeException', classMeta, Exception);
   setMetadataFor(IllegalArgumentException, 'IllegalArgumentException', classMeta, RuntimeException);
-  setMetadataFor(NoSuchElementException, 'NoSuchElementException', classMeta, RuntimeException);
   //endregion
-  function last(_this__u8e3s4) {
-    // Inline function 'kotlin.text.isEmpty' call
-    if (charSequenceLength(_this__u8e3s4) === 0)
-      throw NoSuchElementException_init_$Create$('Char sequence is empty.');
-    return charSequenceGet(_this__u8e3s4, get_lastIndex(_this__u8e3s4));
-  }
-  function get_lastIndex(_this__u8e3s4) {
-    return charSequenceLength(_this__u8e3s4) - 1 | 0;
-  }
   function _UShort___init__impl__jigrne(data) {
     return data;
   }
@@ -64,6 +54,9 @@ if (typeof Math.imul === 'undefined') {
     // Inline function 'kotlin.UShort.toInt' call
     tmp$ret$0 = _UShort___get_data__impl__g0245(code) & 65535;
     return _Char___init__impl__6a9atx(tmp$ret$0);
+  }
+  function Char__minus_impl_a2frrh($this, other) {
+    return _get_value__a43j40($this) - _get_value__a43j40(other) | 0;
   }
   function Char__toInt_impl_vasixd($this) {
     return _get_value__a43j40($this);
@@ -182,17 +175,6 @@ if (typeof Math.imul === 'undefined') {
   function isString(a) {
     return typeof a === 'string';
   }
-  function charSequenceLength(a) {
-    var tmp;
-    if (isString(a)) {
-      // Inline function 'kotlin.js.unsafeCast' call
-      // Inline function 'kotlin.js.asDynamic' call
-      tmp = a.length;
-    } else {
-      tmp = a.l();
-    }
-    return tmp;
-  }
   function captureStack(instance, constructorFunction) {
     if (Error.captureStackTrace != null) {
       Error.captureStackTrace(instance, constructorFunction);
@@ -239,13 +221,13 @@ if (typeof Math.imul === 'undefined') {
   }
   function Long() {
   }
-  protoOf(Long).n = function () {
-    return this.m_1;
+  protoOf(Long).m = function () {
+    return this.l_1;
   };
   function numberToInt(a) {
     var tmp;
     if (a instanceof Long) {
-      tmp = a.n();
+      tmp = a.m();
     } else {
       tmp = doubleToInt(a);
     }
@@ -370,29 +352,15 @@ if (typeof Math.imul === 'undefined') {
   function RuntimeException() {
     captureStack(this, RuntimeException);
   }
-  function NoSuchElementException_init_$Init$(message, $this) {
-    RuntimeException_init_$Init$(message, $this);
-    NoSuchElementException.call($this);
-    return $this;
-  }
-  function NoSuchElementException_init_$Create$(message) {
-    var tmp = NoSuchElementException_init_$Init$(message, objectCreate(protoOf(NoSuchElementException)));
-    captureStack(tmp, NoSuchElementException_init_$Create$);
-    return tmp;
-  }
-  function NoSuchElementException() {
-    captureStack(this, NoSuchElementException);
-  }
   //region block: exports
   _.$_$ = _.$_$ || {};
-  _.$_$.a = Char__toInt_impl_vasixd;
-  _.$_$.b = charSequenceGet;
-  _.$_$.c = charSequenceLength;
+  _.$_$.a = _Char___init__impl__6a9atx;
+  _.$_$.b = Char__minus_impl_a2frrh;
+  _.$_$.c = charSequenceGet;
   _.$_$.d = classMeta;
   _.$_$.e = protoOf;
   _.$_$.f = setMetadataFor;
-  _.$_$.g = last;
-  _.$_$.h = VOID;
+  _.$_$.g = VOID;
   //endregion
   return _;
 }));

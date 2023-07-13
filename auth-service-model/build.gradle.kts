@@ -4,6 +4,10 @@ plugins {
 
 val junitVersion: String by project
 
+repositories {
+    mavenCentral()
+}
+
 kotlin {
     sourceSets {
         all {
@@ -17,6 +21,7 @@ kotlin {
             }
         }
     }
+
     js(IR) {
         moduleName = "auth-service-model"
         binaries.library()
@@ -25,7 +30,15 @@ kotlin {
         }
         generateTypeScriptDefinitions()
     }
+
     jvm {
 
     }
+
+    macosX64("native") {
+        binaries {
+            executable()
+        }
+    }
+
 }

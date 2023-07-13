@@ -3,7 +3,7 @@ package ru.timmson.authService.model
 import kotlin.js.JsExport
 
 @JsExport
-fun isValidLuna(number: String): Boolean {
+fun isValidCardNumber(number: String): Boolean {
     if (number.length != 16) return false
     var sum = 0
     for (i in number.length - 1 downTo 0) {

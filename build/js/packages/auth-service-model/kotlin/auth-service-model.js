@@ -24,7 +24,7 @@
   //region block: pre-declaration
   setMetadataFor(User, 'User', classMeta);
   //endregion
-  function isValidLuna(number) {
+  function isValidCardNumber(number) {
     if (!(number.length === 16))
       return false;
     var sum = 0;
@@ -73,7 +73,7 @@
     var $ru$timmson = $ru.timmson || ($ru.timmson = {});
     var $ru$timmson$authService = $ru$timmson.authService || ($ru$timmson.authService = {});
     var $ru$timmson$authService$model = $ru$timmson$authService.model || ($ru$timmson$authService.model = {});
-    $ru$timmson$authService$model.isValidLuna = isValidLuna;
+    $ru$timmson$authService$model.isValidCardNumber = isValidCardNumber;
     var $ru = _.ru || (_.ru = {});
     var $ru$timmson = $ru.timmson || ($ru.timmson = {});
     var $ru$timmson$authService = $ru$timmson.authService || ($ru$timmson.authService = {});

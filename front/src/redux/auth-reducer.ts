@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {User, isValidLuna} from "../model"
+import {User, isValidCardNumber} from "../model"
 
 export interface AuthState {
     authorized: boolean
@@ -20,7 +20,7 @@ export const AuthSlice = createSlice({
         },
         updateCardNumber: (state: AuthState, action: PayloadAction<string>) => {
             state.cardNumber = action.payload
-            state.isValidCardNUmber = isValidLuna(action.payload)
+            state.isValidCardNUmber = isValidCardNumber(action.payload)
         },
         dropAction: (state: AuthState) => {
             state.authorized = false
