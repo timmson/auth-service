@@ -1,56 +1,102 @@
 import axios from "axios"
-import {healthCheck, login} from "../../src/redux/auth-api"
-import {AnyAction} from "@reduxjs/toolkit"
+import {healthCheck, login, logout} from "../../src/redux/auth-api"
 import {authAction, dropAction} from "../../src/redux/auth-reducer"
 
 jest.mock("axios")
 
-describe("API should", () => {
+describe("Auth API should", () => {
 
 	const data = {id: 1, firstName: "", lastName: ""}
 
-	beforeEach(() => {
-		jest.clearAllMocks()
-	})
-
 	test("check successfully", async () => {
-		(axios.get as jest.Mock).mockResolvedValue({status: 200, data: data})
+		const dispatch = jest.fn()
+		const thunk = healthCheck()
 
-		await healthCheck((action: AnyAction) => expect(action).toEqual(authAction(data)))
+		axios.get.mockResolvedValueOnce({status: 200, data: data})
+		await thunk(dispatch, undefined, undefined)
 
 		expect(axios.get).toHaveBeenCalledWith("/api/v1/private/healthcheck")
-		expect.assertions(2)
+		expect(axios.get).toBeCalledTimes(1)
+
+		const callSuccessAction = dispatch.mock.calls[1][0]
+		expect(callSuccessAction.type).toEqual(authAction.type)
+		expect(callSuccessAction.payload).toEqual(data)
 	})
 
 	test("check unsuccessfully", async () => {
-		(axios.get as jest.Mock).mockRejectedValue({response: {status: 403}})
+		const dispatch = jest.fn()
+		const thunk = healthCheck()
 
-		await healthCheck((action: AnyAction) => expect(action).toEqual(dropAction()))
+		axios.get.mockRejectedValueOnce({status: 500})
+		await thunk(dispatch, undefined, undefined)
 
 		expect(axios.get).toHaveBeenCalledWith("/api/v1/private/healthcheck")
-		expect.assertions(2)
+		expect(axios.get).toBeCalledTimes(1)
+
+		const callSuccessAction = dispatch.mock.calls[1][0]
+		expect(callSuccessAction.type).toEqual(dropAction.type)
 	})
 
-/*
 	test("login successfully", async () => {
-		(axios.post as jest.Mock).mockResolvedValue({status: 200})
-		(axios.get  as jest.Mock).mockResolvedValue({status: 200, data: data})
+		const dispatch = jest.fn()
+		const thunk = login()
 
-		await login((action: AnyAction) => expect(action).toEqual(authAction(data)))
+		axios.post.mockResolvedValueOnce({status: 200})
+		axios.get.mockResolvedValueOnce({status: 200, data: data})
+		await thunk(dispatch, undefined, undefined)
 
 		expect(axios.post).toHaveBeenCalledWith("/api/v1/authenticate/login")
-		expect.assertions(2)
+		expect(axios.post).toBeCalledTimes(1)
+
+		expect(axios.get).toHaveBeenCalledWith("/api/v1/private/healthcheck")
+		expect(axios.get).toBeCalledTimes(1)
+
+		const callSuccessAction = dispatch.mock.calls[1][0]
+		expect(callSuccessAction.type).toEqual(authAction.type)
+		expect(callSuccessAction.payload).toEqual(data)
 	})
-*/
 
 	test("login unsuccessfully", async () => {
-		(axios.post as jest.Mock).mockRejectedValue({response: {status: 403}})
+		const dispatch = jest.fn()
+		const thunk = login()
 
-		await login((action: AnyAction) => expect(action).toEqual(dropAction()))
+		axios.post.mockRejectedValueOnce({status: 500})
+		await thunk(dispatch, undefined, undefined)
 
 		expect(axios.post).toHaveBeenCalledWith("/api/v1/authenticate/login")
-		expect.assertions(2)
+		expect(axios.post).toBeCalledTimes(1)
+
+		const callSuccessAction = dispatch.mock.calls[1][0]
+		expect(callSuccessAction.type).toEqual(dropAction.type)
 	})
 
+	test("logout successfully", async () => {
+		const dispatch = jest.fn()
+		const thunk = logout()
+
+		axios.post.mockResolvedValueOnce({status: 200})
+		await thunk(dispatch, undefined, undefined)
+
+		expect(axios.post).toHaveBeenCalledWith("/api/v1/authenticate/logout")
+		expect(axios.post).toBeCalledTimes(1)
+	})
+
+	test("logout unsuccessfully", async () => {
+		const dispatch = jest.fn()
+		const thunk = logout()
+
+		axios.post.mockRejectedValueOnce({status: 500})
+		await thunk(dispatch, undefined, undefined)
+
+		expect(axios.post).toHaveBeenCalledWith("/api/v1/authenticate/logout")
+		expect(axios.post).toBeCalledTimes(1)
+
+		const callSuccessAction = dispatch.mock.calls[1][0]
+		expect(callSuccessAction.type).toEqual(dropAction.type)
+	})
+
+	afterEach(() => {
+		jest.clearAllMocks()
+	})
 
 })

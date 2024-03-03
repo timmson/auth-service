@@ -1,48 +1,48 @@
 import React from "react"
-import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "./redux/store"
 import {login, logout} from "./redux/auth-api"
-import {updateCardNumber} from "./redux/auth-reducer";
+import {updateCardNumber} from "./redux/auth-reducer"
+import {useAppDispatch, useAppSelector} from "./redux/hooks"
 
 const App = () => {
 
-    const state = useSelector((state: RootState) => state.auth)
-    const dispatch = useDispatch()
+	const state = useAppSelector((state: RootState) => state.auth)
+	const dispatch = useAppDispatch()
 
-    const button = state.authorized ?
-        (<button onClick={() => logout(dispatch)}>Logout</button>) :
-        (<button onClick={() => login(dispatch)}>Login</button>)
+	const button = state.authorized ?
+		(<button onClick={() => dispatch(login)}>Logout</button>) :
+		(<button onClick={() => dispatch(logout)}>Login</button>)
 
-    function update(target: EventTarget & HTMLInputElement) {
-        dispatch(updateCardNumber(target.value))
-    }
+	function update(target: EventTarget & HTMLInputElement) {
+		dispatch(updateCardNumber(target.value))
+	}
 
-    return (
-        <>
-            <h1>
+	return (
+		<>
+			<h1>
                 Hello, auth-service!
-            </h1>
-            <p>
-                {
-                    state.authorized
-                        ?
-                        `You are ${state.user.firstName} ${state.user.lastName}`
-                        :
-                        "You are not authorized"
-                }
-            </p>
-            {button}
-            <br/>
-            <br/>
-            <label htmlFor="cardNumber">Card number</label>
+			</h1>
+			<p>
+				{
+					state.authorized
+						?
+						`You are ${state.user.firstName} ${state.user.lastName}`
+						:
+						"You are not authorized"
+				}
+			</p>
+			{button}
+			<br/>
+			<br/>
+			<label htmlFor="cardNumber">Card number</label>
             &nbsp;
-            <input type="text" id="cardNumber" name="cardNumber" value={state.cardNumber}
-                   onChange={(e) => update(e.target)}/>
+			<input type="text" id="cardNumber" name="cardNumber" value={state.cardNumber}
+				onChange={(e) => update(e.target)}/>
             &nbsp;
             is {state.isValidCardNUmber ? "valid" : "invalid"}
-        </>
+		</>
 
-    )
+	)
 }
 
 export default App

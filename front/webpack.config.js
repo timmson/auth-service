@@ -31,12 +31,15 @@ module.exports = {
 		static: {
 			directory: outputDir,
 		},
-		proxy: {
-			"/api": "http://localhost:8081"
-		},
+		proxy: [
+			{
+				context: "/api",
+				target: "http://localhost:8080"
+			}
+		],
 		historyApiFallback: true,
 		compress: true,
 		host: "0.0.0.0",
-		port: 8080
+		port: 8081
 	}
 }

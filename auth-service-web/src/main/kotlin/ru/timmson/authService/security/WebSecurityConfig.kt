@@ -12,16 +12,13 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 class WebSecurityConfig {
 
-
     @Bean
     fun filterChain(http: HttpSecurity, authenticationService: AuthenticationService): SecurityFilterChain =
         http
             .authorizeHttpRequests {
-                it.requestMatchers("/api/v1/authenticate/**").permitAll()
-                    .requestMatchers("/api/v1/public/**").permitAll()
-                    .requestMatchers("/api/v1/private/**").access { _, context ->
+                it.requestMatchers("/api/v1/private/**").access { _, context ->
                         AuthorizationDecision(isAuth(context.request, authenticationService.token))
-                    }
+                    }.anyRequest().permitAll()
             }.csrf { it.disable() }
             .build()
 

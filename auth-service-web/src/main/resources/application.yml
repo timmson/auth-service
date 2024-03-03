@@ -1,2 +1,16 @@
 server:
-  port: 8081
+  port: 8080
+  servlet:
+    session:
+      timeout: 10h
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  main:
+    banner-mode: off
+
+  web:
+    resources:
+      static-locations: "file:./front/docs"
