@@ -10,8 +10,8 @@ const App = () => {
 	const dispatch = useAppDispatch()
 
 	const button = state.authorized ?
-		(<button onClick={() => dispatch(login)}>Logout</button>) :
-		(<button onClick={() => dispatch(logout)}>Login</button>)
+		(<button onClick={() => dispatch(logout())}>Logout</button>) :
+		(<button onClick={() => dispatch(login())}>Login</button>)
 
 	function update(target: EventTarget & HTMLInputElement) {
 		dispatch(updateCardNumber(target.value))
