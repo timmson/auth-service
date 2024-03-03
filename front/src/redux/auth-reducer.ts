@@ -5,27 +5,27 @@ export interface AuthState {
     authorized: boolean
     user?: User
     cardNumber: string
-    isValidCardNUmber: boolean
+    isValidCardNumber: boolean
 }
 
-const initialState: AuthState = {authorized: false, cardNumber: "", isValidCardNUmber: false}
+const initialState: AuthState = {authorized: false, cardNumber: "", isValidCardNumber: false}
 
 export const AuthSlice = createSlice({
-    name: "auth",
-    initialState,
-    reducers: {
-        authAction: (state: AuthState, action: PayloadAction<User>) => {
-            state.authorized = true
-            state.user = action.payload
-        },
-        updateCardNumber: (state: AuthState, action: PayloadAction<string>) => {
-            state.cardNumber = action.payload
-            state.isValidCardNUmber = isValidCardNumber(action.payload)
-        },
-        dropAction: (state: AuthState) => {
-            state.authorized = false
-        }
-    }
+	name: "auth",
+	initialState,
+	reducers: {
+		authAction: (state: AuthState, action: PayloadAction<User>) => {
+			state.authorized = true
+			state.user = action.payload
+		},
+		updateCardNumber: (state: AuthState, action: PayloadAction<string>) => {
+			state.cardNumber = action.payload
+			state.isValidCardNumber = isValidCardNumber(action.payload)
+		},
+		dropAction: (state: AuthState) => {
+			state.authorized = false
+		}
+	}
 })
 
 export default AuthSlice.reducer

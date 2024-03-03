@@ -8,5 +8,6 @@ slices.forEach((it) => Reducers[it.name] = it.reducer)
 
 export const Store = configureStore({reducer: Reducers})
 export type RootState = ReturnType<typeof Store.getState>
+export type AppDispatch = typeof Store.dispatch
 
-healthCheck(Store.dispatch).then()
+Store.dispatch(healthCheck)
