@@ -39,7 +39,7 @@ const App = () => {
 			<input type="text" id="cardNumber" name="cardNumber" value={state.cardNumber}
 				onChange={(e) => update(e.target)}/>
             &nbsp;
-            is {state.isValidCardNUmber ? "valid" : "invalid"}
+            is {state.isValidCardNumber ? "valid" : "invalid"}
 		</>
 
 	)

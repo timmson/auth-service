@@ -1,0 +1,20 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npx eslint ./test --fix",
+    "debug": "npx playwright test --headed",
+    "test": "npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "1.42.1",
+    "@types/node": "20.11.25",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "eslint": "^8.41.0"
+  }
+}
